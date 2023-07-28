@@ -190,9 +190,7 @@ RSpec.describe 'Authors', type: :request do
     before { post '/api/authors', params: { data: params } }
 
     context 'with valid parameters' do
-      let(:params) do
-        attributes_for(:author)
-      end
+      let(:params) { attributes_for(:author) }
 
       it 'gets HTTP Status 201' do
         expect(response.status).to eq 201
@@ -214,9 +212,7 @@ RSpec.describe 'Authors', type: :request do
     end
 
     context 'with invalid parameters' do
-      let(:params) do
-        attributes_for(:author, given_name: '')
-      end
+      let(:params) { attributes_for(:author, given_name: '') }
 
       it 'gets HTTP status 422' do
         expect(response.status).to eq 422
