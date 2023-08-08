@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe 'Publishers', type: :request do
+  before do
+    allow_any_instance_of(PublishersController).to(
+      receive(:validate_auth_scheme).and_return(true)
+    )
+    allow_any_instance_of(PublishersController).to(
+      receive(:authenticate_client).and_return(true)
+    )
+  end
+
   let(:oreilly) { create(:publisher) }
   let(:dev_media) { create(:dev_media) }
   let(:super_books) { create(:super_books) }
@@ -272,7 +281,7 @@ RSpec.describe 'Publishers', type: :request do
 
   describe 'DELETE /api/publishers/:id' do
     context 'with existing resource' do
-      before { delete "/api/publishers/#{oreilly.id}"}
+      before { delete "/api/publishers/#{oreilly.id}" }
 
       it 'gets HTTP status 204' do
         expect(response.status).to eq 204
