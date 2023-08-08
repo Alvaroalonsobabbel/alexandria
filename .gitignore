@@ -34,3 +34,6 @@
 
 # Ignore local system files
 .DS_Store
+
+/public/uploads
+/images
