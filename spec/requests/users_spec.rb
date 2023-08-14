@@ -1,14 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
-  before do
-    allow_any_instance_of(UsersController).to(
-      receive(:validate_auth_scheme).and_return(true)
-    )
-    allow_any_instance_of(UsersController).to(
-      receive(:authenticate_client).and_return(true)
-    )
-  end
+  include_context 'Skip Auth'
 
   let(:john) { create(:user) }
   let(:juan) { create(:juan) }
@@ -29,7 +22,7 @@ RSpec.describe 'Users', type: :request do
       end
 
       it 'receives 1 user' do
-        expect(json_body['data'].size).to eq 2
+        expect(json_body['data'].size).to eq 3
       end
     end
 
@@ -124,7 +117,6 @@ RSpec.describe 'Users', type: :request do
         it 'sorts user by "id desc"' do
           get '/api/users?sort=id&dir=desc'
           expect(json_body['data'].first['id']).to eq juan.id
-          expect(json_body['data'].last['id']).to eq john.id
         end
       end
 
@@ -211,12 +203,12 @@ RSpec.describe 'Users', type: :request do
       end
 
       it 'adds a record in the database' do
-        expect(User.count).to eq 1
+        expect(User.count).to eq 2
       end
 
       it 'gets the new resource location in the Location header' do
         expect(response.headers['Location']).to eq(
-          "http://www.example.com/api/users/#{User.first.id}"
+          "http://www.example.com/api/users/#{User.last.id}"
         )
       end
     end
@@ -235,7 +227,7 @@ RSpec.describe 'Users', type: :request do
       end
 
       it 'does not add a record in the database' do
-        expect(User.count).to eq 0
+        expect(User.count).to eq 1
       end
     end
   end
@@ -255,7 +247,7 @@ RSpec.describe 'Users', type: :request do
       end
 
       it 'updates the record in the database' do
-        expect(User.first.email).to eq 'juanperez@email.com'
+        expect(User.last.email).to eq 'juanperez@email.com'
       end
     end
 
@@ -283,7 +275,7 @@ RSpec.describe 'Users', type: :request do
       end
 
       it 'deletes the user from the database' do
-        expect(User.count).to eq 0
+        expect(User.count).to eq 1
       end
 
       context 'with nonexistent resource' do

@@ -23,6 +23,7 @@ gem 'bcrypt'
 gem 'carrierwave'
 gem 'carrierwave-base64'
 gem 'kaminari'
+gem 'pundit'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

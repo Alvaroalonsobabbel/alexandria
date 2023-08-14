@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     resources :password_resets, only: %i[show create update],
                                 param: :reset_token
 
+    resources :access_tokens, only: :create do
+      delete '/', action: :destroy, on: :collection
+    end
+
     get '/search/:text', to: 'search#index'
   end
 

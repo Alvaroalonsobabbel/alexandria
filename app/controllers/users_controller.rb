@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user, only: %i[index show update destroy]
+  before_action :authorize_actions
+
   def index
     users = orchestrate_query(User.all)
     render serialize(users)
