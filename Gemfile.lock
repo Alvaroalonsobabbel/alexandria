@@ -143,6 +143,15 @@ GEM
     mini_magick (4.12.0)
     mini_mime (1.1.2)
     minitest (5.18.1)
+    monetize (1.12.0)
+      money (~> 6.12)
+    money (6.16.0)
+      i18n (>= 0.6.4, <= 2)
+    money-rails (1.15.0)
+      activesupport (>= 3.0)
+      monetize (~> 1.9)
+      money (~> 6.13)
+      railties (>= 3.0)
     msgpack (1.7.1)
     net-imap (0.3.6)
       date
@@ -227,10 +236,12 @@ GEM
       listen (>= 2.7, < 4.0)
       spring (>= 1.2, < 3.0)
     ssrf_filter (1.1.1)
+    stripe (8.7.0)
     thor (1.2.2)
     timeout (0.4.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    vcr (6.2.0)
     webmock (3.18.1)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
@@ -253,6 +264,7 @@ DEPENDENCIES
   factory_bot_rails
   kaminari
   listen (>= 3.0.5, < 3.2)
+  money-rails
   pg
   pg_search
   puma (~> 5.0)
@@ -262,7 +274,9 @@ DEPENDENCIES
   shoulda-matchers
   spring
   spring-watcher-listen (~> 2.0.0)
+  stripe
   tzinfo-data
+  vcr
   webmock
 
 RUBY VERSION

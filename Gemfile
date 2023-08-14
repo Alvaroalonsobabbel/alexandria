@@ -23,12 +23,15 @@ gem 'bcrypt'
 gem 'carrierwave'
 gem 'carrierwave-base64'
 gem 'kaminari'
+gem 'money-rails'
 gem 'pundit'
+gem 'stripe'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'rspec-rails'
+  gem 'vcr'
 end
 
 group :development do

@@ -1,12 +1,15 @@
-require_relative "boot"
+require_relative 'boot'
 
-require "rails/all"
+require 'rails/all'
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+
+env_variables = File.join('config', 'env.rb')
+load(env_variables) if File.exist?(env_variables)
 
 module Alexandria
   class Application < Rails::Application
