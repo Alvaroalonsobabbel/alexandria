@@ -24,7 +24,9 @@ gem 'carrierwave'
 gem 'carrierwave-base64'
 gem 'kaminari'
 gem 'money-rails'
+gem 'oj'
 gem 'pundit'
+gem 'rack-cors', require: 'rack/cors'
 gem 'stripe'
 
 group :development, :test do
